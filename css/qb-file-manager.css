@@ -1,0 +1,834 @@
+/* qb-file-manager.css */
+
+/* General Layout and Container */
+.qb-file-manager-wrap {
+    padding: 30px;
+    background: linear-gradient(135deg, #f5f7fa 0%, #e8edf2 100%); /* Soft, light background */
+    min-height: calc(100vh - 32px);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+    color: #333;
+    box-sizing: border-box;
+    overflow-x: hidden;
+}
+
+.qb-main-title {
+    font-size: 2.8em;
+    font-weight: 900;
+    color: #2c3e50;
+    margin-bottom: 40px;
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.15);
+    letter-spacing: -0.8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    animation: fadeInDown 0.8s ease-out;
+}
+
+.qb-brand-by {
+    font-size: 0.5em;
+    font-weight: 600;
+    color: #7f8c8d;
+    margin-left: 10px;
+    opacity: 0.8;
+    text-shadow: none;
+}
+
+/* Main Content Area Wrapper */
+.qb-main-content-area {
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    padding: 25px; /* Padding for the whole content area */
+    border: 1px solid #e0e0e0;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Top Header Actions (New) */
+.qb-header-actions-top {
+    display: flex;
+    justify-content: flex-start; /* Align to start */
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px; /* Space between forms */
+    padding-bottom: 20px;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 20px;
+}
+
+.qb-action-form-inline {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: #f8f9fa;
+    padding: 10px 15px;
+    border-radius: 8px;
+    border: 1px solid #e9ecef;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.qb-action-form-inline .dashicons {
+    font-size: 1.2em;
+    color: #555;
+}
+
+.qb-input-text-small, .qb-input-file-small {
+    padding: 8px 12px;
+    border: 1px solid #ced4da;
+    border-radius: 6px;
+    font-size: 0.9em;
+    color: #495057;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.qb-input-text-small:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.2);
+    outline: none;
+}
+
+.qb-input-file-small {
+    flex-grow: 1; /* Allow file input to take space */
+}
+
+/* Smaller Buttons for Header Actions */
+.qb-button-small {
+    padding: 8px 15px;
+    font-size: 0.85em;
+    border-radius: 6px; /* Slightly less rounded */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.qb-button-small span.dashicons {
+    margin-right: 6px;
+    font-size: 1.1em;
+}
+
+
+/* Breadcrumbs */
+.qb-breadcrumbs {
+    margin-bottom: 25px;
+    padding: 15px 20px;
+    background-color: #e6f7ff;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    font-size: 0.95em;
+    border: 1px solid #cceeff;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.qb-breadcrumbs .qb-loading-spinner {
+    margin-right: 10px;
+}
+
+.qb-breadcrumb-link {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: 700;
+    transition: color 0.3s ease, text-decoration 0.3s ease;
+}
+
+.qb-breadcrumb-link:hover {
+    color: #0056b3;
+    text-decoration: underline;
+}
+
+.qb-breadcrumb-separator {
+    margin: 0 10px;
+    color: #999;
+    font-weight: 400;
+}
+
+/* File Grid Container */
+.qb-file-grid-container {
+    flex-grow: 1; /* Allows it to fill available space */
+    overflow-y: auto; /* Enable scrolling for the grid */
+    padding: 15px; /* Padding inside the grid container */
+    border: 1px solid #eef5f9;
+    border-radius: 10px;
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.03);
+    background-color: #fcfdff;
+}
+
+/* File Grid */
+.qb-file-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); /* Responsive columns for box-box */
+    gap: 20px; /* Space between grid items */
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Individual Grid Item (Box) */
+.qb-grid-item {
+    background-color: #ffffff;
+    border: 1px solid #e9ecef;
+    border-radius: 10px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* Softer shadow */
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    position: relative;
+    overflow: hidden;
+    min-height: 160px; /* Consistent height */
+    justify-content: space-between;
+    cursor: pointer; /* Default cursor for all items in grid */
+}
+
+.qb-grid-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Parent Directory Item Specifics */
+.qb-grid-item-parent {
+    background-color: #e0f2f7;
+    border-color: #cceeff;
+}
+
+.qb-grid-item-parent .qb-parent-dir-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: #007bff;
+    font-weight: 700;
+    font-size: 1.1em;
+    width: 100%; /* Ensure link takes full width of item */
+    height: 100%; /* Ensure link takes full height of item */
+    justify-content: center; /* Center content vertically */
+}
+
+.qb-grid-item-parent .qb-parent-dir-link .dashicons {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+    color: #007bff;
+}
+
+.qb-grid-item-parent:hover {
+    background-color: #d9edf7;
+}
+
+/* Icons in Grid Items */
+.qb-grid-item .dashicons {
+    font-size: 3.5em; /* Large icons */
+    margin-bottom: 15px;
+    line-height: 1;
+    border-radius: 8px; /* Rounded corners for icons */
+    padding: 5px; /* Padding for the icon itself */
+    background-color: rgba(0,0,0,0.03); /* Very subtle background for icons */
+}
+
+.qb-icon-folder {
+    color: #ffc107; /* Amber for folders */
+}
+
+.qb-icon-file {
+    color: #6c757d; /* Darker gray for files */
+}
+
+/* Specific File Type Icons in Grid */
+.qb-icon-file.type-image { color: #28a745; }
+.qb-icon-file.type-pdf { color: #dc3545; }
+.qb-icon-file.type-code { color: #007bff; }
+.qb-icon-file.type-archive { color: #6f42c1; }
+.qb-icon-file.type-other { color: #6c757d; }
+
+/* Item Name */
+.qb-item-name {
+    font-weight: 600;
+    margin-bottom: 8px;
+    word-break: break-all;
+    font-size: 1em;
+    color: #343a40;
+}
+
+/* Item Details (Size, Modified) */
+.qb-item-details {
+    font-size: 0.85em;
+    color: #6c757d;
+    margin-bottom: 15px; /* Space before buttons */
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    width: 100%; /* Ensure details take full width */
+}
+
+/* Hide size for folders */
+.qb-grid-item.qb-type-folder .qb-item-details span:first-child {
+    display: none;
+}
+
+/* Item Actions (Buttons) - Positioned within the grid item */
+.qb-item-actions {
+    position: absolute; /* Absolute positioning relative to .qb-grid-item */
+    top: 0; /* Position at the top */
+    left: 0; /* Position at the left */
+    width: 90%; /* Span full width of the grid item */
+    display: flex;
+    justify-content: space-between; /* Push items to ends */
+    align-items: flex-start; /* Align to top */
+    padding: 10px; /* Padding to keep buttons off the edge */
+    z-index: 5; /* Ensure buttons are on top */
+}
+
+/* Specific button styling for grid items */
+.qb-item-actions .qb-button {
+    padding: 4px 8px; /* Very small padding */
+    font-size: 0.7em; /* Very small font size */
+    border-radius: 4px; /* Smallest rounding */
+    box-shadow: 0 1px 2px rgba(0,0,0,0.1); /* Subtle shadow */
+    min-width: unset; /* Remove min-width inherited from general button */
+    height: auto; /* Allow height to adjust */
+}
+
+.qb-item-actions .qb-button span.dashicons {
+    margin-right: 0; /* Remove margin-right for icon */
+    font-size: 0.8em; /* Smallest icon size */
+}
+
+/* Adjust delete button specific to image */
+.qb-item-actions .qb-button-delete {
+    background-color: #dc3545; /* Solid red */
+    background-image: none; /* Remove gradient */
+    color: #fff;
+    border: none;
+    padding: 4px 8px;
+    font-size: 0.7em;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.qb-item-actions .qb-button-delete span.dashicons {
+    display: none; /* Hide dashicon for delete button as per image */
+}
+
+/* Adjust edit button specific to image */
+.qb-item-actions .qb-button-edit {
+    background-color: #6f42c1; /* Purple as per image */
+    background-image: none; /* Remove gradient */
+    color: #fff;
+    border: none;
+    padding: 4px 8px; /* Matched padding with delete button */
+    font-size: 0.7em; /* Matched font-size with delete button */
+    font-weight: bold;
+    text-transform: uppercase;
+    border-radius: 4px; /* Matched border-radius with delete button */
+    box-shadow: 0 1px 2px rgba(0,0,0,0.1); /* Matched shadow with delete button */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+}
+
+.qb-item-actions .qb-button-edit span.dashicons {
+    display: none; /* Hide dashicon for edit button as per image */
+}
+
+.qb-empty-folder-message {
+    text-align: center;
+    color: #777;
+    font-style: italic;
+    padding: 40px;
+    font-size: 1.15em;
+    background-color: #fdfdfd;
+    border-radius: 10px;
+    width: 100%;
+}
+
+/* File Editor */
+.qb-editor {
+    padding: 25px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.03);
+    margin-top: 20px; /* Space from file list */
+    flex-grow: 1; /* Allow editor to take available space */
+    display: flex;
+    flex-direction: column;
+}
+
+/* Ensure editor is hidden by default and only shown by JS */
+.qb-editor.hidden {
+    display: none !important; /* Added !important for robustness */
+}
+
+.qb-editor-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px; /* Space between header and textarea */
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+    gap: 15px; /* Space between title and buttons if wrapped */
+}
+
+.qb-editor-title {
+    font-size: 2.2em;
+    font-weight: 700;
+    color: #343a40;
+    /* margin-bottom: 25px; Removed to allow inline with buttons */
+    margin-bottom: 0; /* Reset margin for inline layout */
+}
+
+.qb-editor-title span {
+    color: #007bff;
+}
+
+.qb-editor-actions-inline {
+    display: flex;
+    gap: 10px; /* Space between save and cancel buttons */
+    align-items: center;
+}
+
+.qb-editor-textarea {
+    width: 100%;
+    flex-grow: 1; /* Allow textarea to fill available space */
+    padding: 20px;
+    border: 1px solid #ced4da;
+    border-radius: 10px;
+    font-family: 'Consolas', 'Monaco', monospace;
+    font-size: 1.05em;
+    line-height: 1.7;
+    resize: vertical;
+    box-sizing: border-box;
+    margin-bottom: 0; /* Removed margin-bottom as buttons are now in header */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    background-color: #fefefe;
+    color: #212529;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.qb-editor-textarea:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 5px rgba(0, 123, 255, 0.25);
+    outline: none;
+    background-color: #ffffff;
+}
+
+/* Removed .qb-actions as buttons are now in .qb-editor-actions-inline */
+/* .qb-actions {
+    display: flex;
+    gap: 15px;
+    justify-content: flex-end;
+    padding-top: 10px;
+} */
+
+/* Custom Buttons (General) */
+.qb-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 25px;
+    border: none;
+    border-radius: 10px;
+    font-weight: 700;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    font-size: 0.95em;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    position: relative;
+    overflow: hidden;
+    background-size: 200% auto;
+}
+
+.qb-button::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300%;
+    height: 300%;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0;
+    z-index: 1;
+}
+
+.qb-button:hover::before {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+}
+
+.qb-button span.dashicons {
+    margin-right: 10px;
+    font-size: 1.4em;
+    line-height: 1;
+    position: relative;
+    z-index: 2;
+}
+
+.qb-button-primary {
+    background-image: linear-gradient(to right, #007bff 0%, #0056b3 100%);
+    color: #fff;
+    border: 1px solid #007bff;
+}
+
+.qb-button-primary:hover {
+    background-position: right center;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+}
+
+.qb-button-success {
+    background-image: linear-gradient(to right, #28a745 0%, #218838 100%);
+    color: #fff;
+    border: 1px solid #28a745;
+}
+
+.qb-button-success:hover {
+    background-position: right center;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+}
+
+.qb-button-danger {
+    background-image: linear-gradient(to right, #dc3545 0%, #c82333 100%);
+    color: #fff;
+    border: 1px solid #dc3545;
+}
+
+.qb-button-danger:hover {
+    background-position: right center;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+}
+
+.qb-button-secondary {
+    background-color: #f8f9fa;
+    color: #495057;
+    border: 1px solid #ced4da;
+}
+
+.qb-button-secondary:hover {
+    background-color: #e2e6ea;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+
+/* Modal Styles */
+.qb-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.75);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.qb-modal.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.qb-modal-content {
+    background-color: #ffffff;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.4);
+    max-width: 550px;
+    width: 90%;
+    text-align: center;
+    transform: translateY(-40px);
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: 1px solid #e0e0e0;
+}
+
+.qb-modal.visible .qb-modal-content {
+    transform: translateY(0);
+}
+
+.qb-modal-title {
+    font-size: 2em;
+    font-weight: 700;
+    color: #343a40;
+    margin-bottom: 20px;
+}
+
+.qb-modal-message {
+    font-size: 1.2em;
+    color: #6c757d;
+    margin-bottom: 35px;
+    line-height: 1.8;
+}
+
+.qb-modal-actions {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+}
+
+/* Custom Notification Area */
+.qb-notification-area {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 10000;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.qb-notification {
+    background-color: #fff;
+    padding: 15px 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.95em;
+    opacity: 0;
+    transform: translateX(100%);
+    transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+}
+
+.qb-notification.show {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.qb-notification.hide {
+    opacity: 0;
+    transform: translateX(100%);
+}
+
+.qb-notification.success {
+    border-left: 5px solid #28a745;
+    color: #155724;
+}
+
+.qb-notification.error {
+    border-left: 5px solid #dc3545;
+    color: #721c24;
+}
+
+.qb-notification.warning {
+    border-left: 5px solid #ffc107;
+    color: #856404;
+}
+
+.qb-notification .dashicons {
+    font-size: 1.3em;
+}
+
+/* Loading Spinner */
+.qb-loading-spinner {
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    border-left-color: #007bff;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    animation: spin 1s linear infinite;
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 8px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Keyframe Animations */
+@keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+@keyframes slideInLeft {
+    from { opacity: 0; transform: translateX(-30px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+
+/* Responsive Adjustments */
+@media (max-width: 992px) {
+    .qb-main-title {
+        font-size: 2.2em;
+        margin-bottom: 30px;
+    }
+    .qb-main-content-area {
+        padding: 20px;
+    }
+    .qb-header-actions-top {
+        gap: 15px;
+        padding-bottom: 15px;
+        margin-bottom: 15px;
+    }
+    .qb-action-form-inline {
+        padding: 8px 12px;
+    }
+    .qb-input-text-small, .qb-input-file-small, .qb-button-small {
+        font-size: 0.85em;
+        padding: 6px 10px;
+    }
+    .qb-button-small span.dashicons {
+        font-size: 1em;
+    }
+    .qb-breadcrumbs {
+        padding: 12px 15px;
+        font-size: 0.9em;
+        margin-bottom: 20px;
+    }
+    .qb-file-grid-container {
+        padding: 10px;
+    }
+    .qb-file-grid {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 15px;
+    }
+    .qb-grid-item {
+        min-height: 140px;
+        padding: 12px;
+    }
+    .qb-grid-item .dashicons {
+        font-size: 3em;
+        margin-bottom: 12px;
+    }
+    .qb-item-name {
+        font-size: 0.95em;
+    }
+    .qb-item-details {
+        font-size: 0.8em;
+        margin-bottom: 12px;
+    }
+    .qb-item-actions .qb-button {
+        padding: 3px 6px;
+        font-size: 0.65em;
+    }
+    .qb-item-actions .qb-button span.dashicons {
+        font-size: 0.7em;
+    }
+    .qb-editor-title {
+        font-size: 1.8em;
+    }
+    .qb-editor-textarea {
+        padding: 15px;
+        font-size: 0.95em;
+    }
+    .qb-modal-content {
+        padding: 30px;
+        max-width: 450px;
+    }
+    .qb-modal-title {
+        font-size: 1.6em;
+    }
+    .qb-modal-message {
+        font-size: 1.05em;
+    }
+    .qb-modal-actions {
+        gap: 15px;
+    }
+}
+
+@media (max-width: 768px) {
+    .qb-file-manager-wrap {
+        padding: 15px;
+    }
+    .qb-main-title {
+        font-size: 2em;
+        margin-bottom: 25px;
+    }
+    .qb-main-content-area {
+        padding: 15px;
+    }
+    .qb-header-actions-top {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+        padding-bottom: 10px;
+        margin-bottom: 10px;
+    }
+    .qb-action-form-inline {
+        flex-direction: row; /* Keep inline elements in a row */
+        justify-content: space-between;
+        width: 100%;
+        padding: 6px 10px;
+    }
+    .qb-input-text-small, .qb-input-file-small, .qb-button-small {
+        font-size: 0.8em;
+        padding: 5px 8px;
+    }
+    .qb-breadcrumbs {
+        padding: 10px 12px;
+        font-size: 0.8em;
+    }
+    .qb-file-grid {
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+        gap: 10px;
+    }
+    .qb-grid-item {
+        min-height: 120px;
+        padding: 10px;
+    }
+    .qb-grid-item .dashicons {
+        font-size: 2.8em;
+        margin-bottom: 10px;
+    }
+    .qb-item-name {
+        font-size: 0.9em;
+    }
+    .qb-item-details {
+        font-size: 0.75em;
+        margin-bottom: 10px;
+    }
+    .qb-item-actions {
+        top: 5px;
+        right: 5px;
+        gap: 3px;
+    }
+    .qb-item-actions .qb-button {
+        padding: 2px 5px;
+        font-size: 0.6em;
+    }
+    .qb-item-actions .qb-button span.dashicons {
+        font-size: 0.6em;
+    }
+    .qb-item-actions .qb-button-edit {
+        bottom: 5px;
+        right: 5px;
+        padding: 2px 5px;
+        font-size: 0.6em;
+    }
+    .qb-editor-title {
+        font-size: 1.5em;
+    }
+    .qb-editor-textarea {
+        padding: 10px;
+        font-size: 0.8em;
+    }
+    .qb-modal-content {
+        padding: 25px;
+    }
+    .qb-modal-title {
+        font-size: 1.4em;
+    }
+    .qb-modal-message {
+        font-size: 0.9em;
+    }
+    .qb-modal-actions {
+        gap: 10px;
+    }
+}
